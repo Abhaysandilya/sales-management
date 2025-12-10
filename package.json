@@ -1,0 +1,21 @@
+{
+  "name": "trustate-retail-sales-system",
+  "version": "1.0.0",
+  "description": "Retail Sales Management System - TruEstate Assignment",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "convert:csv": "node backend/utils/csv-to-json.js"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
+
