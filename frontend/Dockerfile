@@ -3,11 +3,16 @@ FROM node:22-alpine AS builder
 
 WORKDIR /app
 
-# Copy only frontend files
+# Copy package files
 COPY package.json package-lock.json* ./
-RUN npm ci
 
+# Install dependencies
+RUN npm install
+
+# Copy all source files
 COPY . .
+
+# Build the application
 RUN npm run build
 
 # Production stage
@@ -21,10 +26,10 @@ RUN npm install -g serve
 # Copy built files from builder
 COPY --from=builder /app/dist ./dist
 
-# Expose port
+# Expose port (Railway provides PORT env var)
 EXPOSE 3000
 
-# Start command - Railway provides PORT env var
+# Start command
 ENV PORT=3000
-CMD sh -c "serve -s dist -l ${PORT:-3000}"
+CMD ["sh", "-c", "serve -s dist -l ${PORT:-3000}"]
 
