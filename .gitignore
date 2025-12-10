@@ -6,9 +6,11 @@ node_modules/
 dist/
 build/
 backend/data/*.csv
-backend/data/*.json
+# Temporarily allowing sales_data.json for deployment
+# backend/data/*.json
 !backend/data/.gitkeep
 !backend/data/sample_data_structure.json
+!backend/data/sales_data.json
 *.pdf
 .vscode/
 .idea/
